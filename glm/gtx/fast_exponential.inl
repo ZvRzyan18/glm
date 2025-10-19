@@ -10,8 +10,8 @@ namespace glm
 		//for -x = 1/exp2(abs(x))
 		float out, C0, C1, C2, C3, C4, C5;
 		bool reciprocal;
-		uint32_t exponent;
-		glm::detail::float_t<float> mx, tmpx;
+		int exponent;
+		detail::float_t<float> mx, tmpx;
 		// coefficients interval [0, 1] 
 		C0 = 0.001896461e-00f;
 		C1 = 0.008942828e-00f;
@@ -22,7 +22,7 @@ namespace glm
 		mx.f = x;
 		reciprocal = (mx.i & 0x80000000) != 0;
 		mx.i = mx.i & 0x7FFFFFFF;
-		exponent = static_cast<uint32_t>(mx.f);
+		exponent = static_cast<int>(mx.f);
 		mx.f = mx.f - static_cast<float>(exponent);
 		out = (((((C0 * mx.f + C1) * mx.f + C2) * mx.f + C3) * mx.f + C4) * mx.f + C5);
 		tmpx.i = (exponent + 127) << 23;
@@ -39,8 +39,8 @@ namespace glm
 		//for -x = 1/exp2(abs(x))
 		double out, C0, C1, C2, C3, C4, C5;
 		bool reciprocal;
-		uint64_t exponent;
-		glm::detail::float_t<double> mx, tmpx;
+		detail::int64 exponent;
+		detail::float_t<double> mx, tmpx;
 		//coefficients interval [0, 1] 
 		C0 = 0.00189646114543331e-00;
 		C1 = 0.00894282898410912e-00;
@@ -51,7 +51,7 @@ namespace glm
 		mx.f = x;
 		reciprocal = (mx.i & 0x8000000000000000) != 0;
 		mx.i = mx.i & 0x7FFFFFFFFFFFFFFF;
-		exponent = static_cast<uint64_t>(mx.f);
+		exponent = static_cast<detail::int64>(mx.f);
 		mx.f = mx.f - static_cast<double>(exponent);
 		out = (((((C0 * mx.f + C1) * mx.f + C2) * mx.f + C3) * mx.f + C4) * mx.f + C5);
 		tmpx.i = (exponent + 1023) << 52;
@@ -70,7 +70,7 @@ namespace glm
 		//for x <= 1.0 = -log2(1/x)
 		float l2, inv_three_half, lx, out, poly, C0, C1, C2, C3, C4, C5, C6;
 		bool low, low_mantissa;
-		glm::detail::float_t<float> tmpx, mx;
+		detail::float_t<float> tmpx, mx;
 		// coefficients 
 		C0 = -0.06750856e-00f;
 		C1 =  0.60578664e-00f;
@@ -106,7 +106,7 @@ namespace glm
 		//for x <= 1.0 = -log2(1/x)
 		double l2, inv_three_half, lx, out, poly, C0, C1, C2, C3, C4, C5, C6;
 		bool low, low_mantissa;
-		glm::detail::float_t<double> tmpx, mx;
+		detail::float_t<double> tmpx, mx;
 		// coefficients 
 		C0 = -0.067508561412635e-00;
 		C1 =  0.605786644896372e-00;
