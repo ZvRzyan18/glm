@@ -20,7 +20,7 @@ namespace glm
 		C4 = 0.693154752e-00f;
 		C5 = 0.999999893e-00f;
 		mx.f = x;
-		reciprocal = (mx.i & 0x80000000) != 0;
+		reciprocal = (mx.i & int(0x80000000)) != 0;
 		mx.i = mx.i & 0x7FFFFFFF;
 		exponent = static_cast<int>(mx.f);
 		mx.f = mx.f - static_cast<float>(exponent);
@@ -49,7 +49,7 @@ namespace glm
 		C4 = 0.69315475247516734e-00;
 		C5 = 0.99999989311082671e-00;
 		mx.f = x;
-		reciprocal = (mx.i & 0x8000000000000000) != 0;
+		reciprocal = (mx.i & detail::int64(0x8000000000000000)) != 0;
 		mx.i = mx.i & 0x7FFFFFFFFFFFFFFF;
 		exponent = static_cast<detail::int64>(mx.f);
 		mx.f = mx.f - static_cast<double>(exponent);
@@ -85,7 +85,7 @@ namespace glm
 		mx.f = x;
 		low = mx.f < 1.0f;
 		mx.f = low ? (1.0f / mx.f) : mx.f;
-		tmpx.i = 1065353216 | (mx.i & 0x007FFFFF);
+		tmpx.i = 1065353216 | (mx.i & int(0x007FFFFF));
 		lx = tmpx.f;
 		low_mantissa = lx <= 1.5f;
 		lx = low_mantissa ? lx : (lx * inv_three_half);
@@ -121,7 +121,7 @@ namespace glm
 		mx.f = x;
 		low = mx.f < 1.0;
 		mx.f = low ? (1.0 / mx.f) : mx.f;
-		tmpx.i = 4607182418800017408U | (mx.i & 0x000FFFFFFFFFFFFF);
+		tmpx.i = 4607182418800017408U | (mx.i & detail::int64(0x000FFFFFFFFFFFFF));
 		lx = tmpx.f;
 		low_mantissa = lx <= 1.5;
 		lx = low_mantissa ? lx : (lx * inv_three_half);
